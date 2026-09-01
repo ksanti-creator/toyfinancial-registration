@@ -1,0 +1,1 @@
+- [Orval Zod compatibility](orval-zod-compatibility.md) — keep generated validation output aligned with the workspace's installed Zod major version.

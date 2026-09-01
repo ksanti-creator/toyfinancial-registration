@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "ToyFinancial Dealer Registration"
+description = "A dealer enrollment and fulfillment portal for ToyFinancial programs, with a public registration flow and an administrative pipeline for follow-up, documents, and email outbox management."
+version = "1.0.0"
+id = "artifacts/toyfinancial-registration"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 26084
+
+[services.development]
+run = "pnpm --filter @workspace/toyfinancial-registration run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/toyfinancial-registration", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/toyfinancial-registration/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "26084"
+BASE_PATH = "/"
